@@ -76,7 +76,7 @@ endif
 	stat ${ARWEN_PATH}
 
 status:
-	go test -v -count=1 ./p2p/memp2p
+	go test
 
 release:
 	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'master' ];\
