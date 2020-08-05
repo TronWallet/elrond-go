@@ -78,10 +78,14 @@ endif
 status:
 	go test -short -count=1 ./...
 
+TAG := $(shell git describe --abbrev=0)
+
 release:
-	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'a' ];\
+	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'master' ];\
 		then\
-			hub release create -m "$(shell bump major --allow-dirty)" $(shell bump major --allow-dirty) -p;\
+      $(shell y | ./release.sh major | exit 0)\
+			hub release create -m "$(TAG)" $(TAG);\
 		else\
-		 	hub release create -m "$(shell bump patch --allow-dirty)" $(shell bump patch --allow-dirty) -p;\
+      $(shell ./release.sh patch)\
+		 	hub release create -m "$(TAG)" $(TAG) -p;\
 	fi
