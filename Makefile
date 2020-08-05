@@ -74,3 +74,11 @@ endif
 	go get github.com/ElrondNetwork/arwen-wasm-vm/cmd/arwen@$(shell cat go.mod | grep arwen-wasm-vm | sed 's/.* //')
 	go build -o ${ARWEN_PATH} github.com/ElrondNetwork/arwen-wasm-vm/cmd/arwen
 	stat ${ARWEN_PATH}
+
+release:
+	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'master' ];\
+		then\
+			hub release create -m "$(shell bump major --allow-dirty)" $(shell bump major --allow-dirty);\
+		else\
+		 	hub release create -m "$(shell bump patch --allow-dirty)" $(shell bump patch --allow-dirty) -p;\
+	fi
