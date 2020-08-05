@@ -75,6 +75,9 @@ endif
 	go build -o ${ARWEN_PATH} github.com/ElrondNetwork/arwen-wasm-vm/cmd/arwen
 	stat ${ARWEN_PATH}
 
+status:
+	go test -v -count=1 ./p2p/memp2p
+
 release:
 	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'master' ];\
 		then\
