@@ -76,12 +76,12 @@ endif
 	stat ${ARWEN_PATH}
 
 status:
-	go test
+	go run
 
 release:
-	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'master' ];\
+	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'a' ];\
 		then\
-			hub release create -m "$(shell bump major --allow-dirty)" $(shell bump major --allow-dirty);\
+			hub release create -m "$(shell bump major --allow-dirty)" $(shell bump major --allow-dirty) -p;\
 		else\
 		 	hub release create -m "$(shell bump patch --allow-dirty)" $(shell bump patch --allow-dirty) -p;\
 	fi
