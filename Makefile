@@ -76,7 +76,7 @@ endif
 	stat ${ARWEN_PATH}
 
 status:
-	go run
+	go help
 
 release:
 	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'a' ];\
