@@ -76,7 +76,7 @@ endif
 	stat ${ARWEN_PATH}
 
 status:
-	golint
+	go test -short -count=1 ./...
 
 release:
 	if [ $(shell git rev-parse --abbrev-ref HEAD) = 'a' ];\
